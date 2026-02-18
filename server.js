@@ -12,6 +12,11 @@ app.use(express.static(path.join(__dirname)));
 
 const rooms = new Map();
 
+// Explicit root handler so serverless routing always serves the app shell.
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
 function randomToken(size = 24) {
   return crypto.randomBytes(size).toString("hex");
 }
