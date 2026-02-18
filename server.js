@@ -251,6 +251,10 @@ app.get("/api/rooms/:code/my-role", auth, (req, res) => {
   return res.json({ role: player.role });
 });
 
-app.listen(PORT, () => {
-  console.log(`Mafia Role Randomizer server running at http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Mafia Role Randomizer server running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
