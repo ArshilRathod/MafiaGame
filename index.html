@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mafia Role Randomizer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Mafia Role Randomizer</h1>
+        <p>Private per-player role reveal with secure backend assignment.</p>
+      </header>
+
+      <section class="panel" id="authPanel">
+        <h2>Join Or Create Room</h2>
+        <form id="createRoomForm" class="stack" novalidate>
+          <h3>Create Room (Host)</h3>
+          <div class="form-grid">
+            <label class="field">
+              <span>Your Name</span>
+              <input id="hostName" type="text" maxlength="40" required />
+            </label>
+            <label class="field">
+              <span>Total Players</span>
+              <input id="totalPlayers" type="number" min="3" step="1" required />
+            </label>
+            <label class="field">
+              <span>Mafia Count</span>
+              <input id="mafiaCount" type="number" min="1" step="1" required />
+            </label>
+            <label class="field">
+              <span>Angel Count</span>
+              <input id="angelCount" type="number" min="0" step="1" required />
+            </label>
+            <label class="field field-readonly">
+              <span>Citizen Count</span>
+              <input id="citizenCount" type="number" readonly />
+            </label>
+          </div>
+          <button type="submit">Create Room</button>
+        </form>
+
+        <form id="joinRoomForm" class="stack" novalidate>
+          <h3>Join Existing Room</h3>
+          <div class="form-grid join-grid">
+            <label class="field">
+              <span>Your Name</span>
+              <input id="joinName" type="text" maxlength="40" required />
+            </label>
+            <label class="field">
+              <span>Room Code</span>
+              <input id="joinCode" type="text" maxlength="6" required />
+            </label>
+          </div>
+          <button type="submit" class="secondary">Join Room</button>
+        </form>
+
+        <p id="authError" class="error" role="alert" aria-live="assertive"></p>
+      </section>
+
+      <section class="panel hidden" id="roomPanel">
+        <div class="room-top">
+          <h2>Room <span id="roomCodeText">-</span></h2>
+          <button id="leaveBtn" type="button" class="danger">Leave Session</button>
+        </div>
+
+        <div class="room-stats">
+          <p id="statusText">Status: waiting</p>
+          <p id="playersText">Players: 0/0</p>
+          <p id="countsText">Counts: -</p>
+        </div>
+
+        <div class="actions" id="hostActions">
+          <button id="startBtn" type="button">Start Game</button>
+          <button id="resetBtn" type="button" class="secondary">Reset Round</button>
+        </div>
+
+        <div class="players-section">
+          <h3>Players In Room</h3>
+          <ul id="playerList"></ul>
+        </div>
+
+        <div class="reveal-section">
+          <h3>Private Role</h3>
+          <button id="revealRoleBtn" type="button" class="reveal-btn">Reveal My Role</button>
+          <div id="roleCard" class="role-card hidden">
+            <p class="role-label">Your Role:</p>
+            <p id="roleText" class="role-text"></p>
+          </div>
+        </div>
+
+        <p id="roomError" class="error" role="alert" aria-live="assertive"></p>
+      </section>
+    </main>
+
+    <script src="app.js?v=20260218"></script>
+  </body>
+</html>
