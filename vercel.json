@@ -2,10 +2,11 @@
   "version": 2,
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/api/(.*)",
+      "dest": "/api/[...all].js"
     },
     {
-      "src": "/api/(.*)",
+      "src": "/(.*)",
       "dest": "/api/[...all].js"
     }
   ]
