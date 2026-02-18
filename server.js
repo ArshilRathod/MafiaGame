@@ -17,6 +17,17 @@ app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// Explicit static routes for serverless environments where file serving can be tricky.
+app.get("/styles.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(__dirname, "styles.css"));
+});
+
+app.get("/app.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(__dirname, "app.js"));
+});
+
 function randomToken(size = 24) {
   return crypto.randomBytes(size).toString("hex");
 }
